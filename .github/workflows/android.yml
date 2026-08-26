@@ -15,14 +15,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v4
-      - name: Install Android 17 SDK
-        shell: bash
-        run: |
-          sdkmanager "platforms;android-37.1" "build-tools;37.0.0"
-          if [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
-            ln -s "$ANDROID_HOME/platforms/android-37.1" "$ANDROID_HOME/platforms/android-37"
-          fi
+      - name: Install Android 17 preview SDK
+        run: sdkmanager --channel=3 "platforms;android-37.0" "build-tools;37.0.0"
       - uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: '8.11.1'
+          gradle-version: '9.5.0'
       - run: gradle :app:testDebugUnitTest :app:assembleDebug --stacktrace
