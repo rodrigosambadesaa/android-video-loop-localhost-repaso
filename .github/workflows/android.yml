@@ -18,9 +18,9 @@ jobs:
       - name: Install Android 17 SDK
         shell: bash
         run: |
-          sdkmanager --channel=3 "platforms;android-CinnamonBun" "build-tools;37.0.0"
+          sdkmanager "platforms;android-37.1" "build-tools;37.0.0"
           if [ ! -e "$ANDROID_HOME/platforms/android-37" ]; then
-            ln -s "$ANDROID_HOME/platforms/android-CinnamonBun" "$ANDROID_HOME/platforms/android-37"
+            ln -s "$ANDROID_HOME/platforms/android-37.1" "$ANDROID_HOME/platforms/android-37"
           fi
       - uses: gradle/actions/setup-gradle@v6
         with:
